@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { UserListComponent } from './components/user-list/user-list'; // ton composant
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  standalone: true,
+  imports: [CommonModule, UserListComponent],
+  template: `<router-outlet></router-outlet>`,
 })
-export class App {
-  protected readonly title = signal('frontend-angular');
-}
+export class AppComponent {}

@@ -1,11 +1,14 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
+import { UserListComponent } from './components/user-list/user-list';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
+    provideHttpClient(),
+    provideRouter([
+      { path: '', redirectTo: '/users', pathMatch: 'full' },
+      { path: 'users', component: UserListComponent }
+    ])
   ]
 };
