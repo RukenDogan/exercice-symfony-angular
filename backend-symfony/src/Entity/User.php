@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,17 @@ class User
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTime $birthDate = null;
+
+    /**
+     * @var Collection<int, Possession>
+     */
+    #[ORM\OneToMany(targetEntity: Possession::class, mappedBy: 'user')]
+    private Collection $possessions;
+
+    public function __construct()
+    {
+        $this->possessions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,6 +125,36 @@ class User
     public function setBirthDate(?\DateTime $birthDate): static
     {
         $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Possession>
+     */
+    public function getPossessions(): Collection
+    {
+        return $this->possessions;
+    }
+
+    public function addPossession(Possession $possession): static
+    {
+        if (!$this->possessions->contains($possession)) {
+            $this->possessions->add($possession);
+            $possession->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePossession(Possession $possession): static
+    {
+        if ($this->possessions->removeElement($possession)) {
+            // set the owning side to null (unless already changed)
+            if ($possession->getUser() === $this) {
+                $possession->setUser(null);
+            }
+        }
 
         return $this;
     }
