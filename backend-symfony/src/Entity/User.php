@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -16,23 +17,29 @@ class User
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(['user:read'])]
     #[ORM\Column(length: 40)]
     private ?string $nom = null;
 
+    #[Groups(['user:read'])]
     #[ORM\Column(length: 40)]
     private ?string $prenom = null;
 
+    #[Groups(['user:read'])]
     #[ORM\Column(length: 40)]
     private ?string $email = null;
 
+    #[Groups(['user:read'])]
     #[ORM\Column(length: 40)]
     private ?string $adresse = null;
 
+    #[Groups(['user:read'])]
     #[ORM\Column(length: 40)]
     private ?string $tel = null;
 
+    #[Groups(['user:read'])]
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTime $birthDate = null;
+    private ?\DateTimeInterface $birthDate = null;
 
     /**
      * @var Collection<int, Possession>
@@ -157,5 +164,15 @@ class User
         }
 
         return $this;
+    }
+
+    #[Groups(['user:read'])]
+    public function getAge(): ?int
+    {
+        if ($this->birthDate === null) {
+            return null;
+        }
+
+        return $this->birthDate->diff(new \DateTime())->y;
     }
 }
