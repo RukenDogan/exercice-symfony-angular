@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { UserListComponent } from './components/user-list/user-list'; // ton composant
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, UserListComponent],
+  imports: [RouterOutlet],
   template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {}
