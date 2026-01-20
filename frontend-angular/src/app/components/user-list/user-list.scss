@@ -29,3 +29,17 @@
   background-color: #e5e7eb;
   transition: background-color 0.2s ease;
 }
+
+
+.delete-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background: #b91c1c;
+  }
+}

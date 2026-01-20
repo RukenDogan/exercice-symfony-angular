@@ -21,4 +21,15 @@ export class UserListComponent implements OnInit {
       this.users = data;
     });
   }
+
+  delete(id: number): void {
+    if (!confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {
+      return;
+    }
+
+    this.userService.deleteUser(id).subscribe(() => {
+      this.users = this.users.filter(user => user.id !== id);
+    });
+  }
+
 }

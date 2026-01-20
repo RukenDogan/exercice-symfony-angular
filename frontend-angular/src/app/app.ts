@@ -1,15 +1,3 @@
-// import { Component } from '@angular/core';
-// import { RouterOutlet } from '@angular/router';
-
-// @Component({
-//   selector: 'app-root',
-//   standalone: true,
-//   imports: [RouterOutlet],
-//   template: `<router-outlet></router-outlet>`,
-// })
-// export class AppComponent {}
-
-
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -17,6 +5,6 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.html',
+  template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {}

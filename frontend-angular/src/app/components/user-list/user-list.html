@@ -1,3 +1,4 @@
+
 <table class="user-table">
   <thead>
     <tr>
@@ -7,6 +8,7 @@
       <th>Adresse</th>
       <th>Téléphone</th>
       <th>Âge</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +19,9 @@
       <td>{{ user.adresse }}</td>
       <td>{{ user.tel }}</td>
       <td>{{ user.age }}</td>
+      <td>
+        <button class="delete-btn" (click)="delete(user.id)">Supprimer</button>
+      </td>
     </tr>
   </tbody>
 </table>
