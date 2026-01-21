@@ -1,1 +1,9 @@
-<p>user-detail works!</p>
+<div *ngIf="user; else loading">
+  <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+  <p>Email : {{ user.email }}</p>
+  <p>Date de naissance : {{ user.birthDate }}</p>
+</div>
+
+<ng-template #loading>
+  <p>Chargement...</p>
+</ng-template>

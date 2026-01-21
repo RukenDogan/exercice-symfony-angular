@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { UserService, User } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-detail',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule ],
   templateUrl: './user-detail.html',
   styleUrl: './user-detail.scss',
 })

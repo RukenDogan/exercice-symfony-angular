@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService, User } from '../../services/user.service';
 import { RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -12,15 +13,13 @@ import { RouterModule } from '@angular/router';
 })
 export class UserListComponent implements OnInit {
 
+  users$!: Observable<User[]>;
   users: User[] = [];
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(data => {
-      console.log('USERS', data);
-      this.users = data;
-    });
+    this.users$ = this.userService.getUsers();
   }
 
   delete(id: number): void {
