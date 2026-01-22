@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { UserService, User } from '../../services/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-detail',
@@ -12,6 +13,7 @@ import { UserService, User } from '../../services/user.service';
 export class UserDetailComponent {
 
   user: User | null = null;
+  user$!: Observable<User>;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,10 +21,13 @@ export class UserDetailComponent {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getUser(id).subscribe(data => {
-      this.user = data;
-    });
+  const idParam = this.route.snapshot.paramMap.get('id');
+  console.log('ID PARAM:', idParam);
+
+  const id = Number(idParam);
+  console.log('ID NUMBER:', id);
+
+  this.user$ = this.userService.getUser(id);
   }
 }
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,22 +20,25 @@ final class ApiUserController extends AbstractController
         );
     }
 
+    #[Route('/api/users/{id}', name: 'api_user_show', methods: ['GET'])]
+    public function show(User $user): JsonResponse
+    {
+        return $this->json(
+            $user,
+            200,
+            [],
+            ['groups' => ['user:read']]
+        );
+    }
+
     #[Route('/api/users/{id}', name: 'api_users_delete', methods: ['DELETE'])]
     public function delete(
-        int $id,
-        UserRepository $userRepository,
+        User $user,
         EntityManagerInterface $em
     ): JsonResponse {
-        $user = $userRepository->find($id);
-
-        if (!$user) {
-            return $this->json(['message' => 'User not found'], 404);
-        }
-
         $em->remove($user);
         $em->flush();
 
-        return $this->json(['message' => 'User deleted']);
+        return $this->json(null, 204);
     }
-
 }

@@ -22,14 +22,18 @@ export class UserListComponent implements OnInit {
     this.users$ = this.userService.getUsers();
   }
 
-  delete(id: number): void {
-    if (!confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {
-      return;
-    }
-
-    this.userService.deleteUser(id).subscribe(() => {
-      this.users = this.users.filter(user => user.id !== id);
-    });
+delete(id: number): void {
+  if (!confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {
+    return;
   }
+
+  this.userService.deleteUser(id).subscribe({
+    next: () => {
+      // Après suppression, on recharge les utilisateurs depuis l'API
+      this.users$ = this.userService.getUsers();
+    },
+    error: (err) => console.error('Delete failed', err)
+  });
+}
 
 }

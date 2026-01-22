@@ -1,7 +1,8 @@
-<div *ngIf="user; else loading">
-  <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+<div *ngIf="user$ | async as user; else loading">
+  <h2>{{ user.prenom }} {{ user.nom }}</h2>
   <p>Email : {{ user.email }}</p>
   <p>Date de naissance : {{ user.birthDate }}</p>
+  <p>Âge : {{ user.age }}</p>
 </div>
 
 <ng-template #loading>
