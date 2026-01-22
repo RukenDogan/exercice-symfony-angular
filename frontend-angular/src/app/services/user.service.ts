@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface Possession {
+  id: number;
+  nom: string;
+  type: string;
+  valeur: number;
+}
+
 export interface User {
   id: number;
   nom: string;
@@ -11,6 +18,7 @@ export interface User {
   tel: string;
   birthDate: string;
   age: number;
+  possessions?: Possession[];
 }
 
 @Injectable({

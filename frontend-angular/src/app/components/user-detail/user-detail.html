@@ -1,8 +1,16 @@
 <div *ngIf="user$ | async as user; else loading">
   <h2>{{ user.prenom }} {{ user.nom }}</h2>
-  <p>Email : {{ user.email }}</p>
-  <p>Date de naissance : {{ user.birthDate }}</p>
-  <p>Âge : {{ user.age }}</p>
+
+  <h3>Possessions</h3>
+  <ul *ngIf="user.possessions?.length; else noPossessions">
+    <li *ngFor="let p of user.possessions">
+      {{ p.nom }} <span *ngIf="p.type">({{ p.type }})</span>
+      <span *ngIf="p.valeur">- {{ p.valeur | currency:'USD':'symbol' }}</span>
+    </li>
+  </ul>
+  <ng-template #noPossessions>
+    <p>Pas de possessions.</p>
+  </ng-template>
 </div>
 
 <ng-template #loading>

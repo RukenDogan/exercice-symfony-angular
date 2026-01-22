@@ -22,11 +22,7 @@ export class UserDetailComponent {
 
   ngOnInit(): void {
   const idParam = this.route.snapshot.paramMap.get('id');
-  console.log('ID PARAM:', idParam);
-
   const id = Number(idParam);
-  console.log('ID NUMBER:', id);
-
   this.user$ = this.userService.getUser(id);
   }
 }

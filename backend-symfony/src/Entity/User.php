@@ -46,6 +46,7 @@ class User
      * @var Collection<int, Possession>
      */
     #[ORM\OneToMany(targetEntity: Possession::class, mappedBy: 'user')]
+    #[Groups(['user:read'])]
     private Collection $possessions;
 
     public function __construct()
