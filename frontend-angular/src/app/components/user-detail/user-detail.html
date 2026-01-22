@@ -1,16 +1,21 @@
-<div *ngIf="user$ | async as user; else loading">
-  <h2>{{ user.prenom }} {{ user.nom }}</h2>
+<div *ngIf="user$ | async as user; else loading" class="user-card">
+  <div class="card-header">
+    <h2>{{ user.prenom }} {{ user.nom }}</h2>
+  </div>
 
-  <h3>Possessions</h3>
-  <ul *ngIf="user.possessions?.length; else noPossessions">
-    <li *ngFor="let p of user.possessions">
-      {{ p.nom }} <span *ngIf="p.type">({{ p.type }})</span>
-      <span *ngIf="p.valeur">- {{ p.valeur | currency:'USD':'symbol' }}</span>
-    </li>
-  </ul>
-  <ng-template #noPossessions>
-    <p>Pas de possessions.</p>
-  </ng-template>
+  <div class="card-possessions">
+    <h3>Possessions</h3>
+    <div *ngIf="user.possessions?.length; else noPossessions" class="possessions-grid">
+      <div *ngFor="let p of user.possessions" class="possession-card">
+        <strong>{{ p.nom }}</strong>
+        <p *ngIf="p.type">Type : {{ p.type }}</p>
+        <p *ngIf="p.valeur">Valeur : {{ p.valeur | currency:'USD':'symbol' }}</p>
+      </div>
+    </div>
+    <ng-template #noPossessions>
+      <p>Pas de possessions.</p>
+    </ng-template>
+  </div>
 </div>
 
 <ng-template #loading>
