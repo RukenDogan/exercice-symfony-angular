@@ -50,3 +50,18 @@
     background: #b91c1c;
   }
 }
+
+
+button {
+  background: #0e64de;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+
+  &:hover {
+    background: #1c1cb9;
+  }
+}

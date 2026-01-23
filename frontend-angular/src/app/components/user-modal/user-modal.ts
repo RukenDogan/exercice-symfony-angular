@@ -14,8 +14,6 @@ export class UserModalComponent {
 
   @Output() userAdded = new EventEmitter<User>();
 
-  isOpen = false;
-
   newUser: Partial<User> = {
     nom: '',
     prenom: '',
@@ -27,12 +25,10 @@ export class UserModalComponent {
 
   constructor(private userService: UserService) {}
 
-  open(): void {
-    this.isOpen = true;
-  }
+  @Output() closed = new EventEmitter<void>();
 
   close(): void {
-    this.isOpen = false;
+    this.closed.emit();
     this.resetForm();
   }
 

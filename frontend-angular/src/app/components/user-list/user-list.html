@@ -28,3 +28,11 @@
     </tr>
   </tbody>
 </table>
+
+<button (click)="openModal()">Ajouter un utilisateur</button>
+
+<app-user-modal
+  *ngIf="isModalOpen"
+  (closed)="closeModal()"
+  (userAdded)="closeModal()"
+></app-user-modal>
