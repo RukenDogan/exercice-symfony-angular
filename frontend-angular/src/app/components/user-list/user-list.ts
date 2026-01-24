@@ -42,4 +42,10 @@ export class UserListComponent implements OnInit {
   closeModal(): void {
     this.isModalOpen = false;
   }
+
+    onUserAdded(): void {
+    // Recharger la liste après ajout
+    this.users$ = this.userService.getUsers();
+    this.closeModal();
+  }
 }

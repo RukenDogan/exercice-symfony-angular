@@ -49,13 +49,9 @@
       />
 
       <div class="actions">
-        <button type="submit" [disabled]="userForm.invalid">
-          Ajouter
-        </button>
+        <button type="submit" [disabled]="userForm.invalid">Ajouter</button>
+        <button type="button" (click)="close()">Annuler</button>
 
-        <button type="button" (click)="close()">
-          Annuler
-        </button>
       </div>
     </form>
   </div>

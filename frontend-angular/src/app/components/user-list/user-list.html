@@ -34,5 +34,5 @@
 <app-user-modal
   *ngIf="isModalOpen"
   (closed)="closeModal()"
-  (userAdded)="closeModal()"
+  (userAdded)="onUserAdded()"
 ></app-user-modal>
