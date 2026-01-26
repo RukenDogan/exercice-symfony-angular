@@ -44,7 +44,6 @@ export class UserListComponent implements OnInit {
   }
 
     onUserAdded(): void {
-    // Recharger la liste après ajout
     this.users$ = this.userService.getUsers();
     this.closeModal();
   }

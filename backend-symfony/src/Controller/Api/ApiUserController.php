@@ -63,7 +63,6 @@ final class ApiUserController extends AbstractController
             $user->setBirthDate(new \DateTime($data['birthDate']));
         }
 
-
         $em->persist($user);
         $em->flush();
 
